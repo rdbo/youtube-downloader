@@ -1,3 +1,4 @@
+import { invoke } from '@tauri-apps/api/core';
 import { useRef } from 'react';
 
 export default function App() {
@@ -6,7 +7,8 @@ export default function App() {
 
   const getVideoInfo = async () => {
     console.log("Getting video");
-    videoInfoRef.current.innerText = "TEST";
+    const result = await invoke('test_command');
+    videoInfoRef.current.innerText = result;
   };
 
   return (
