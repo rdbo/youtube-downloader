@@ -1,4 +1,3 @@
-use anyhow::Result;
 use rusty_ytdl::{Video, VideoInfo};
 
 #[tauri::command(rename_all = "snake_case")]
