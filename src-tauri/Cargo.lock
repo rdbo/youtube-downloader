@@ -5910,7 +5910,6 @@ dependencies = [
 name = "youtube-downloader"
 version = "0.1.0"
 dependencies = [
- "anyhow",
  "rusty_ytdl",
  "serde",
  "serde_json",
