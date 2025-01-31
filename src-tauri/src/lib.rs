@@ -1,7 +1,14 @@
-#[tauri::command]
-fn test_command() -> String {
-    println!("I was invoked from JavaScript!");
-    "HELLO FRONTEND, THIS IS RUST SPEAKING".to_owned()
+use anyhow::Result;
+use rusty_ytdl::{Video, VideoInfo};
+
+#[tauri::command(rename_all = "snake_case")]
+async fn test_command(video_url: &str) -> Result<VideoInfo, String> {
+    let video = Video::new(video_url).map_err(|_| "Failed to create Video instance")?;
+    let basic_info = video
+        .get_basic_info()
+        .await
+        .map_err(|_| "Failed to get basic video information")?;
+    Ok(basic_info)
 }
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]

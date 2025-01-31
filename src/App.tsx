@@ -6,8 +6,9 @@ export default function App() {
   const videoInfoRef = useRef<HTMLSpanElement>(null);
 
   const getVideoInfo = async () => {
-    console.log("Getting video");
-    const result = await invoke('test_command');
+    console.log("Getting video info");
+    const result = await invoke('test_command', { video_url: videoUrlRef.current.value });
+    console.log(result);
     videoInfoRef.current.innerText = result;
   };
 
