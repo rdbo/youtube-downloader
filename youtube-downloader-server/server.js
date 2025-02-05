@@ -30,6 +30,15 @@ app.post('/api/video_info', async (req, res) => {
     res.send(videoInfo);
 });
 
+app.post("/api/download_video", async (req, res) => {
+    console.debug("POST /api/download_video |", req.body);
+    const videoId = req.body.videoId;
+    console.debug("Video ID:", videoId);
+
+    console.debug("Downloading video and sending stream...");
+    ytdl(videoId).pipe(res);
+})
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 })
